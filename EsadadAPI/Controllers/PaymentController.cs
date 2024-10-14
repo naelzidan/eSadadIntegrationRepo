@@ -33,6 +33,7 @@ namespace EsadadAPI.Controllers
 
             //Log to EsadadTransactionsLogs Table
 
+
             var tranLog = _commonService.InsertLog(TransactionTypeEnum.Request.ToString(), ApiTypeEnum.ReceivePaymentNotification.ToString(), guid.ToString(), xmlElement);
 
             PaymentNotificationResponse paymentNotificationResponse;
