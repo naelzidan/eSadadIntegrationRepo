@@ -36,8 +36,10 @@ BillPull:
   o	General Exception: Return generate exception XML response
 7.	Sign MsgBody in response and put the signature in the response
 8.	Log the response into EsadadTransactionLogs table
-Id, Transaction type (Response), API (BillPull), Guid, Billing Number, Bill Number, Service type, Currency, XmlElement, Insert date time
+   
+    Id, Transaction type (Response), API (BillPull), Guid, Billing Number, Bill Number, Service type, Currency, XmlElement, Insert date time
 9.	Return the response
+
 
 RecivePaymentNotifications:
 1.	Get Inputs:
@@ -56,15 +58,23 @@ RecivePaymentNotifications:
 7.	Send a payment to Internal System (Billing System)
   o	Inputs (Payment Guid, ServiceType, BillingNumber, BillNumber, PaidAmount)
   o	Query and check EsadadPaymentLogs table by Guid and IsPaid is true
-    	Record does not exist: 
-      	Execute payment to Internal System (Billing system) 
-      	Update EsadadPaymentLogs IsPaid field to True for the most recent record with same Guid.
-      	Generate RecivePaymentNotifications XML Response
-  	Record exist: 
-    	Generate RecivePaymentNotifications XML Response
+
+    o	Record does not exist:
+  	
+      -	Execute payment to Internal System (Billing system)
+  	
+      -	Update EsadadPaymentLogs IsPaid field to True for the most recent record with same Guid.
+  	
+      -	Generate RecivePaymentNotifications XML Response
+  	
+    o	Record exist: 
+  
+      -	Generate RecivePaymentNotifications XML Response
+    
 8.	Sign MsgBody in response and put the signature in the response
 9.	Log the response into EsadadTransactionLogs table
-  Id, Transaction type (Response), API (ReceivePaymentNotification), Guid, Billing Number, Bill Number, Service type, Currency, XmlElement, Insert date time
+    
+    Id, Transaction type (Response), API (ReceivePaymentNotification), Guid, Billing Number, Bill Number, Service type, Currency, XmlElement, Insert date time
 10.	Return the response
 
 
