@@ -5,3 +5,8 @@
 /.vs
 /EsadadAPI/bin/
 /EsadadAPI/obj/
+/Esadad.Core/bin/
+/Esadad.Core/obj/
+/EsadadInfrastructure/bin/
+/EsadadInfrastructure/obj/
+

@@ -109,5 +109,15 @@ namespace Esadad.Infrastructure.Services
             _context.SaveChanges();
             return query;
         }
+
+        //EsadadTransactionLog ICommonService.InsertLog(string transactionType, string apiName, string guid, XmlElement requestElement, object responseObject)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        EsadadPaymentLog ICommonService.InsertPaymentLog(string transactionType, string apiName, string guid, XmlElement requestElement)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
