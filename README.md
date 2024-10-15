@@ -16,7 +16,6 @@ o	Create Log tables
 -	EsadadTransactionsLogs (Id, Transaction type (Request, Response), API (BillPull, PrepaidValidation, ReceivePaymentNotification), Guid, Billing Number, Bill Number, Service type, Currency, XmlElement, Insert date time) // include any other fields as necessary.
 -	EsadadPaymetsLogs (Id, Guid, BillingNumber, BillNumber, ServiceType, Currency, PaidAmount, IsPaid (True, False)) // include any other fields as necessary.
 
-
 BillPull:
 1.	Get Inputs:
 o	guid from query
@@ -38,8 +37,6 @@ o	General Exception: Return generate exception XML response
 8.	Log the response into EsadadTransactionLogs table
 Id, Transaction type (Response), API (BillPull), Guid, Billing Number, Bill Number, Service type, Currency, XmlElement, Insert date time
 9.	Return the response
-
- 
 RecivePaymentNotifications:
 1.	Get Inputs:
 o	guid from query
