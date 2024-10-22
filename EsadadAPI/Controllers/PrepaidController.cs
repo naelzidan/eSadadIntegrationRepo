@@ -9,7 +9,7 @@ namespace EsadadAPI.Controllers
     [ApiController]
     public class PrepaidController : ControllerBase
     {
-        [HttpPost("BillPull")]
+        [HttpPost("PrepaidValidation")]
         public IActionResult PrepaidValidation([FromQuery(Name = "GUID")] Guid guid,
                                      [FromBody] XmlElement xmlElement,
                                      [FromQuery(Name = "username")] string? username = null,
