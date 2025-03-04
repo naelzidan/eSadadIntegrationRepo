@@ -9,6 +9,8 @@ namespace Esadad.Infrastructure.Enums
     public enum ApiTypeEnum
     {
         BillPull,
-        ReceivePaymentNotification
+        ReceivePaymentNotification,
+        PrepaidValidation,
+        PrepaidValidationWithCategory
     }
 }
