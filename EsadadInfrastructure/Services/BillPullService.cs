@@ -87,7 +87,7 @@ namespace Esadad.Infrastructure.Services
 
                 // Log Response to EsadadTransactionLog
 
-                var tranLog = _commonService.InsertLog(TransactionTypeEnum.Request.ToString(), ApiTypeEnum.BillPull.ToString(), guid.ToString(),null, response);
+                var tranLog = _commonService.InsertLog(TransactionTypeEnum.Response.ToString(), ApiTypeEnum.BillPull.ToString(), guid.ToString(),null, response);
 
                 return response;
             }
