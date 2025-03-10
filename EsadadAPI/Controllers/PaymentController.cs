@@ -39,7 +39,7 @@ namespace EsadadAPI.Controllers
 
             //Log to EsadadOaymentsLogs Table
 
-            PaymentNotificationResponse paymentNotificationResponse;
+            PaymentNotificationResponseDto paymentNotificationResponse;
 
             if (!DigitalSignature.VerifySignature(xmlElement))
             {

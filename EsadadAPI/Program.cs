@@ -41,6 +41,7 @@ builder.Services.AddSingleton<IOptionsMonitor<Certificates>, OptionsMonitor<Cert
 builder.Services.AddTransient<IBillPullService, BillPullService>();
 builder.Services.AddTransient<IPaymentNotificationService, PaymentNotificationService>();
 builder.Services.AddTransient<ICommonService, CommonService>();
+builder.Services.AddTransient<IPrepaidValidationService, PrepaidValidationService>();
 
 var app = builder.Build();
 

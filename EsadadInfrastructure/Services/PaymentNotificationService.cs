@@ -15,12 +15,12 @@ namespace Esadad.Infrastructure.Services
         private readonly EsadadIntegrationDbContext _context = context;
         private readonly ICommonService _commonService = commonService;
 
-        public PaymentNotificationResponse GetInvalidSignatureResponse(Guid guid, string billingNumber, string serviceType, XmlElement xmlElement)
+        public PaymentNotificationResponseDto GetInvalidSignatureResponse(Guid guid, string billingNumber, string serviceType, XmlElement xmlElement)
         {
             try
             {
 
-                PaymentNotificationResponse response = new PaymentNotificationResponse()
+                PaymentNotificationResponseDto response = new PaymentNotificationResponseDto()
                 {
                     MsgHeader = new MsgHeader()
                     {
@@ -62,7 +62,7 @@ namespace Esadad.Infrastructure.Services
             }
         }
 
-        public PaymentNotificationResponse GetPaymentNotificationResponse(Guid guid, 
+        public PaymentNotificationResponseDto GetPaymentNotificationResponse(Guid guid, 
                                                                           string billingNumber, 
                                                                           string serviceType, 
                                                                           PaymentNotificationResponseTrxInf paymentNotificationRequestTrxInf,
@@ -154,7 +154,7 @@ namespace Esadad.Infrastructure.Services
                 //    }
                 //}
 
-                return new PaymentNotificationResponse();
+                return new PaymentNotificationResponseDto();
             }
             catch
             {

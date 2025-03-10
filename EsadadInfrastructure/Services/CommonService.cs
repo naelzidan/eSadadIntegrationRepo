@@ -40,9 +40,8 @@ namespace Esadad.Infrastructure.Services
                     };
 
                 }
-                else if (transactionType.ToLower() == "ReceivePaymentNotification")
+                else if (apiName == "ReceivePaymentNotification")
                 {
-                    //PaymentNotificationRequestDto paymentNotificationRequestDto = new PaymentNotificationRequestDto();
                     var paymentNotificationRequestDtoObj = XmlToObjectHelper.DeserializeXmlToObject(xmlElement, new PaymentNotificationRequestDto());
                     esadadTransactionLog = new EsadadTransactionLog
                     {
@@ -59,8 +58,25 @@ namespace Esadad.Infrastructure.Services
                         TranXmlElement = xmlElement.OuterXml
                     };
                 }
+                else if (apiName == "PrepaidValidation")
+                {
+                    var prepaidValidationRequestObj = XmlToObjectHelper.DeserializeXmlToObject(xmlElement, new PrePaidRequestDto());
+                    esadadTransactionLog = new EsadadTransactionLog
+                    {
+                        TransactionType = transactionType,
+                        ApiName = apiName,
+                        Guid = guid,
+                        Timestamp = prepaidValidationRequestObj.MsgHeader.TmStp,
+                        BillingNumber = prepaidValidationRequestObj.MsgBody.BillingInfo.AcctInfo.BillingNo,
+                        ServiceType = prepaidValidationRequestObj.MsgBody.BillingInfo.ServiceTypeDetails.ServiceType,
+                        PrepaidCat = prepaidValidationRequestObj.MsgBody.BillingInfo.ServiceTypeDetails.PrepaidCat,
+                        TranXmlElement = xmlElement.OuterXml
+                    };
 
-            }else if (transactionType.ToLower() == "response" && responseObject != null)
+                }
+
+            }
+            else if (transactionType.ToLower() == "response" && xmlElement != null)
                 {
                 if (apiName == "BillPull")
                 {
@@ -79,23 +95,31 @@ namespace Esadad.Infrastructure.Services
                     };
 
                 }
-                else if (transactionType.ToLower() == "ReceivePaymentNotification")
+                else if (apiName == "ReceivePaymentNotification")
                 {
-                    //PaymentNotificationRequestDto paymentNotificationRequestDto = new PaymentNotificationRequestDto();
-                    var paymentNotificationResponseObj = (PaymentNotificationResponse)responseObject;
+                    var paymentNotificationResponseDtoObj = XmlToObjectHelper.DeserializeXmlToObject(xmlElement, new PaymentNotificationResponseDto());
                     esadadTransactionLog = new EsadadTransactionLog
                     {
                         TransactionType = transactionType,
                         ApiName = apiName,
                         Guid = guid,
-                        Timestamp = paymentNotificationResponseObj.MsgHeader.TmStp,
-                        //BillingNumber = paymentNotificationResponseObj.MsgBody.Transactions.TrxInf.,
-                        //BillNumber = paymentNotificationResponseObj.MsgBody.Transactions.TrxInf.AcctInfo.BillNo,
-                        //ServiceType = paymentNotificationResponseObj.MsgBody.Transactions.TrxInf.ServiceTypeDetails.ServiceType,
-                        //Currency = MemoryCache.Biller.Services.First(b => b.ServiceTypeCode == paymentNotificationResponseObj.MsgBody.Transactions.TrxInf.ServiceTypeDetails.ServiceType).Currency,
-                        //ValidationCode = paymentNotificationResponseObj.MsgBody.Transactions.TrxInf.AcctInfo.BillNo,
-                        //PrepaidCat = paymentNotificationResponseObj.MsgBody.Transactions.TrxInf.ServiceTypeDetails.PrepaidCat,
-                       
+                        Timestamp = paymentNotificationResponseDtoObj.MsgHeader.TmStp,                       
+                        TranXmlElement = xmlElement.OuterXml
+                    };
+
+                }
+                else if (apiName == "PrepaidValidation")
+                {
+                    var prepaidValidationResponseObj = XmlToObjectHelper.DeserializeXmlToObject(xmlElement, new PrePaidResponseDto());
+                    esadadTransactionLog = new EsadadTransactionLog
+                    {
+                        TransactionType = transactionType,
+                        ApiName = apiName,
+                        Guid = guid,
+                        Timestamp = prepaidValidationResponseObj.MsgHeader.TmStp,
+                        BillingNumber = prepaidValidationResponseObj.MsgBody.BillingInfo.AcctInfo.BillingNo,
+                        ServiceType = prepaidValidationResponseObj.MsgBody.BillingInfo.ServiceTypeDetails.ServiceType,
+                        PrepaidCat = prepaidValidationResponseObj.MsgBody.BillingInfo.ServiceTypeDetails.PrepaidCat,
                         TranXmlElement = xmlElement.OuterXml
                     };
 

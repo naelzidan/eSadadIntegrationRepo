@@ -10,7 +10,6 @@ namespace Esadad.Infrastructure.Enums
     {
         BillPull,
         ReceivePaymentNotification,
-        PrepaidValidation,
-        PrepaidValidationWithCategory
+        PrepaidValidation
     }
 }
