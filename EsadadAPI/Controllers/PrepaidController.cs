@@ -10,6 +10,8 @@ namespace EsadadAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Consumes("application/xml")]
+    [Produces("application/xml")]
     public class PrepaidController : ControllerBase
     {
         // private readonly IBillPullService _billPullService;
