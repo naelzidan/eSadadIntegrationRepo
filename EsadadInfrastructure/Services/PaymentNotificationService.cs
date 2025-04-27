@@ -70,6 +70,20 @@ namespace Esadad.Infrastructure.Services
         {
             try
             {
+
+                // check if theer is record availabel at paymentLog (Guid and PayemntPosted = true)
+
+                // Available 
+                // Genretae reponse and return result 
+
+                //Not available 
+                // call stored procedure to add fees to student accounting system (guid, studentNo, servicetype)
+                // ensure  stored procedure on the end update  table [EsadadPaymentsLogs]= true
+
+                // Genretae reponse and return result 
+
+
+
                 //var existing = _context.TransactionsLogs
                 //                       .FirstOrDefault(a => a.Guid.Equals(guid.ToString())
                 //                                            && a.Type.Equals("Response")

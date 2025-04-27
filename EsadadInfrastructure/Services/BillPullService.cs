@@ -158,6 +158,11 @@ namespace Esadad.Infrastructure.Services
                                         SetBnkCode = MemoryCache.Biller.Services.First(b => b.ServiceTypeCode == serviceType).BankCode,
                                         AcctNo = MemoryCache.Biller.Services.First(b => b.ServiceTypeCode == serviceType).IBAN
                                     }
+                                },
+                                AdditionalInfo = new AdditionalInfo()
+                                {
+                                     CustName ="",
+                                     FreeText=""
                                 }
                             }
                         }
