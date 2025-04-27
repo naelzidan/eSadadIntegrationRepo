@@ -101,6 +101,12 @@ namespace Esadad.Infrastructure.DTOs
 
         [XmlElement(ElementName = "FreeText")]
         public string FreeText { get; set; }
+
+        [XmlElement(ElementName = "Email")]
+        public string Email { get; set; }
+
+        [XmlElement(ElementName = "Phone")]
+        public string Phone { get; set; }
     }
 
 
