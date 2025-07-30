@@ -27,9 +27,9 @@ namespace Esadad.Core.Entities
         [StringLength(50)]
         public string BillNumber { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(12, 3)")]
-        public decimal PaidAmount { get; set; }
+        //[Required]
+        //[Column(TypeName = "decimal(12, 3)")]
+        //public decimal PaidAmount { get; set; }
 
         [Required]
         [StringLength(50)]

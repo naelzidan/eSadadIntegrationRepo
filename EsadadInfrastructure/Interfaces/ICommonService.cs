@@ -9,8 +9,7 @@ namespace Esadad.Infrastructure.Interfaces
         EsadadTransactionLog InsertLog(string transactionType, string apiName, string guid,
                                 XmlElement requestElement, Object responseObject=null);
 
-        EsadadPaymentLog InsertPaymentLog(string transactionType, string apiName, string guid,
-                               XmlElement requestElement);
+        EsadadPaymentLog InsertPaymentLog(string guid, XmlElement requestElement);
 
     }
 }

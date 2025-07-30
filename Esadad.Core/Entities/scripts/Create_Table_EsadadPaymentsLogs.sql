@@ -3,7 +3,7 @@
 	[Guid] [varchar](50) NOT NULL,
 	[BillingNumber] [nvarchar](50) NOT NULL,
 	[BillNumber] [nvarchar](50) NOT NULL,
-	[PaidAmount] [decimal](12, 3) NOT NULL,
+	--[PaidAmount] [decimal](12, 3) NOT NULL,
 	[JOEBPPSTrx] [nvarchar](50) NOT NULL,
 	[BankTrxID] [nvarchar](50) NOT NULL,
 	[BankCode] [int] NOT NULL,

@@ -5,6 +5,7 @@ using Esadad.Infrastructure.Interfaces;
 using Esadad.Infrastructure.MemCache;
 using Esadad.Infrastructure.Persistence;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace Esadad.Infrastructure.Services
 {
@@ -134,14 +135,42 @@ namespace Esadad.Infrastructure.Services
             return query;
         }
 
-        //EsadadTransactionLog ICommonService.InsertLog(string transactionType, string apiName, string guid, XmlElement requestElement, object responseObject)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        EsadadPaymentLog ICommonService.InsertPaymentLog(string transactionType, string apiName, string guid, XmlElement requestElement)
+        public EsadadPaymentLog InsertPaymentLog(string guid, XmlElement xmlElement)
         {
-            throw new NotImplementedException();
+            var paymentNotificationRequestDto = XmlToObjectHelper.DeserializeXmlToObject(xmlElement, new PaymentNotificationRequestDto());
+
+            var esadadPaymentLog = new EsadadPaymentLog()
+            {
+                Guid= guid,
+                BillingNumber= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.AcctInfo.BillingNo,
+                BillNumber = paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.AcctInfo.BillingNo,
+                JOEBPPSTrx= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.JOEBPPSTrx.ToString(),
+                BankTrxID= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.BankTrxID.ToString(),
+                BankCode= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.BankCode,
+                DueAmt= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.DueAmt,                
+                PaidAmt= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.PaidAmt,
+                FeesAmt= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.FeesAmt,
+                FeesOnBiller= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.FeesOnBiller,
+                ProcessDate= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.ProcessDate,
+                STMTDate= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.STMTDate,
+                AccessChannel= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.AccessChannel,
+                PaymentMethod= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.PaymentMethod,
+                PaymentType= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.PaymentType,
+                Currency= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.Currency,
+                ServiceType= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.ServiceTypeDetails.ServiceType,
+                PrepaidCat= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.ServiceTypeDetails.PrepaidCat,
+                Amount= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.SubPmts.SubPmt.Amount,
+                SetBnkCode= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.SubPmts.SubPmt.SetBnkCode,
+                AcctNo= paymentNotificationRequestDto.MsgBody.Transactions.TrxInf.SubPmts.SubPmt.AcctNo,
+                IsPaymentPosted= false,
+                InsertDate= DateTime.Now
+            };
+
+            var query = _context.EsadadPaymentsLogs.Add(esadadPaymentLog).Entity;
+
+            _context.SaveChanges();
+            return query;
+ 
         }
     }
 }
