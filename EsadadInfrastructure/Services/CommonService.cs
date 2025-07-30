@@ -76,7 +76,7 @@ namespace Esadad.Infrastructure.Services
                 }
 
             }
-            else if (transactionType.ToLower() == "response" && responseObject != null)
+            else if (transactionType.ToLower() == "response" && ( xmlElement != null || responseObject != null ))
                 {
                 if (apiName == "BillPull")
                 {
@@ -91,7 +91,7 @@ namespace Esadad.Infrastructure.Services
                         BillNumber = billPullResponseObj.MsgBody.BillsRec.BillRec.AcctInfo.BillNo,
                         ServiceType = billPullResponseObj.MsgBody.BillsRec.BillRec.ServiceType,
                         Currency = MemoryCache.Biller.Services.First(b => b.ServiceTypeCode == billPullResponseObj.MsgBody.BillsRec.BillRec.ServiceType).Currency,
-                        TranXmlElement =  ObjectToXmlHelper.ObjectToXmlElement(responseObject).OuterXml //xmlElement.OuterXml
+                        TranXmlElement =  ObjectToXmlHelper.ObjectToXmlElement(billPullResponseObj).OuterXml //xmlElement.OuterXml
                     };
 
                 }
@@ -104,7 +104,7 @@ namespace Esadad.Infrastructure.Services
                         ApiName = apiName,
                         Guid = guid,
                         Timestamp = paymentNotificationResponseDtoObj.MsgHeader.TmStp,                       
-                        TranXmlElement = ObjectToXmlHelper.ObjectToXmlElement(responseObject).OuterXml//xmlElement.OuterXml
+                        TranXmlElement = xmlElement.OuterXml//xmlElement.OuterXml
                     };
 
                 }
@@ -120,7 +120,7 @@ namespace Esadad.Infrastructure.Services
                         BillingNumber = prepaidValidationResponseObj.MsgBody.BillingInfo.AcctInfo.BillingNo,
                         ServiceType = prepaidValidationResponseObj.MsgBody.BillingInfo.ServiceTypeDetails.ServiceType,
                         PrepaidCat = prepaidValidationResponseObj.MsgBody.BillingInfo.ServiceTypeDetails.PrepaidCat,
-                        TranXmlElement = ObjectToXmlHelper.ObjectToXmlElement(responseObject).OuterXml //xmlElement.OuterXml
+                        TranXmlElement = xmlElement.OuterXml //xmlElement.OuterXml
                     };
 
                 }
